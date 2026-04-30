@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規登録 - ChatApp</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f2f5; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 10px; shadow: 0 4px 6px rgba(0,0,0,0.1); width: 350px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .error { color: red; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>新規登録</h2>
+        {% with messages = get_flashed_messages() %}{% if messages %}<p class="error">{{ messages[0] }}</p>{% endif %}{% endwith %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="ユーザー名" required autofocus>
+            <input type="password" name="password" placeholder="パスワード" required>
+            <button type="submit">アカウント作成</button>
+        </form>
+        <p style="text-align:center; font-size: 0.8em;"><a href="{{ url_for('login') }}">ログインはこちら</a></p>
+    </div>
+</body>
+</html>
