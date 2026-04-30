@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ホーム - ChatApp</title>
+    <style>
+        body { font-family: sans-serif; padding: 50px; background: #f8f9fa; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; }
+        .btn { display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 5px; cursor: pointer; border: none; }
+        .btn-create { background: #6f42c1; color: white; }
+        .btn-join { background: #17a2b8; color: white; }
+        input { padding: 10px; width: 200px; border: 1px solid #ddd; border-radius: 5px; }
+        .logout { float: right; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('logout') }}" class="logout">ログアウト</a>
+        <h1>こんにちは、{{ user.username }}さん</h1>
+        
+        <div style="margin-top: 40px;">
+            <h3>1. 新しい部屋を作る</h3>
+            <form method="POST">
+                <button type="submit" name="action" value="create" class="btn btn-create">32進数IDで部屋を生成</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3>2. 既存の部屋に入る</h3>
+            <form method="POST">
+                <input type="text" name="room_id" maxlength="8" placeholder="8桁のIDを入力" required>
+                <button type="submit" name="action" value="join" class="btn btn-join">入室</button>
+            </form>
+            {% with messages = get_flashed_messages() %}{% if messages %}<p style="color:red">{{ messages[0] }}</p>{% endif %}{% endwith %}
+        </div>
+    </div>
+</body>
+</html>
